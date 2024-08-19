@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
-import { TaskDto } from './task.dto';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
+import { FindAllParameters, TaskDto } from './task.dto';
 import { TaskService } from './task.service';
 
 @Controller('task')
@@ -19,8 +19,8 @@ export class TaskController {
     }
 
     @Get()
-    findAll() {
-        
+    findAll(@Query() params: FindAllParameters): TaskDto[] {
+        return this.taskService.findAll(params);
     }
     
     @Put()
